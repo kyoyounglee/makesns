@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mini SNS</title>
+</head>
+<script type='text/javascript' src='{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}'></script>
+<body>
+	<div class='page'>
+		<div id='subject'>
+			<h1>Let's talk about...</h1>
+		</div>
+		<div id='loginout'>
+			{% if not session.logged_in %}
+			<a href="{{ url_for('login') }}">log in</a>
+			<a href="{{ url_for('login') }}">Sign up</a>
+			{% else %}
+			<a href="{{ url_for('logout') }}">log out</a>
+			{% endif %}
+		</div>
+		{% block body %}{% endblock %}
+	</div>
+</body>
+</html>
