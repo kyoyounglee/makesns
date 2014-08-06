@@ -2,7 +2,11 @@ body {
 	background-color: black;
 }
 
-body > .page {
+a {
+	text-decoration: none;
+}
+
+body > div .page {
 	background-color: #EEFFEB;
 	margin-top: 5%;
 	margin-bottom: 5%;
@@ -15,10 +19,25 @@ body > .page {
 	font-family: Ropa Sans, Serif;
 }
 
+#fonts > a {
+	font-family: Ropa Sans, Serif;
+	font-size: 24px;
+}
+
 .contents {
 	margin-top: 30px;
 	margin-bottom: 30px;
-	overflow: auto;
+}
+
+.read {
+	border-radius: 5px;
+	background-color: white;
+	height:auto;
+	padding: 3%;
+}
+
+span#img {
+	font-size: 30px;
 }
 
 
@@ -27,10 +46,6 @@ body > .page {
 	font-size: 12px;
 }
 
-
-a {
-	text-decoration: none;
-}
 
 .radio {
 	display: ;

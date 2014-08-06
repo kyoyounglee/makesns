@@ -13,27 +13,37 @@
 </head>
 
 <body>
-		<div class='page row col-sm-offset-1 col-sm-10'>
-			<div class='subject'>
-				<img src="{{ url_for('static', filename='res/img/sub.png') }}" />
-			</div>
-			<div id='loginout'>
-				{% if not session.logged_in %}
-				<p class="text-right">
-					<a href="{{ url_for('login') }}">Log in </a>
-					<a href="{{ url_for('signup') }}">Sign up </a>
-				</p>
-				{% else %}
-				<p class="text-right">
-					<a href="{{ url_for('wall') }}">My wall </a>
-					<a href="{{ url_for('write') }}">Write </a>
-					<a href="{{ url_for('logout') }}">Log out</a>
-				</p>
-				{% endif %}
-			</div>
-			<div class="contents">
-				{% block body %}{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class='page col-sm-offset-1 col-sm-10'>
+
+				<div class='subject'>
+					<img src="{{ url_for('static', filename='res/img/sub.png') }}" alt="Fakebook" />
+				</div>
+
+				<div id='loginout'>
+					{% if not session.logged_in %}
+					<p class="text-right">
+						<a href="{{ url_for('login') }}">Log in </a>
+						<a href="{{ url_for('signup') }}">Sign up </a>
+					</p>
+					{% else %}
+					<p class="text-right">
+						<a href="{{ url_for('wall') }}">My wall </a>
+						<a href="{{ url_for('write') }}">Write </a>
+						<a href="{{ url_for('logout') }}">Log out</a>
+					</p>
+					{% endif %}
+				</div>
+
+				<div class="contents">
+
+					{% block body %}{% endblock %}
+
+				</div>
+					
 			</div>
 		</div>
+	</div>
 </body>
 </html>

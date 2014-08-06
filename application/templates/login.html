@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
+
+
 <div class='subject'>
-<h1 class="col-sm-offset-1">: log in</h1>
+	<h1 class="col-sm-offset-1">: log in</h1>
 </div>
-<form action="{{ url_for('login') }}" method='post' class="form-horizontal" role="form">
+
+<form action="{{ url_for('login') }}" method='post' role="form" class="form-horizontal">
 	<div class="form-group">
 		<label for="email" class="col-sm-2 control-label">Email</label>
 		<div class="col-sm-4">
@@ -11,7 +14,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="password" class="col-sm-2 control-label">Password</label>
+		<label class="col-sm-2 control-label">Password</label>
 		<div class="col-sm-4">
 			<input type='password' name='password' class="form-control" />
 		</div>
@@ -22,4 +25,5 @@
 		</div>
 	</div>
 </form>
+
 {% endblock %}
