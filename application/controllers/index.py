@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 from application import app
-from flask import render_template
+from flask import render_template, url_for
 
 
 @app.route('/')

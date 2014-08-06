@@ -3,9 +3,9 @@ from application import app
 from flask import render_template, url_for
 
 
-@app.route('/login')
-def login() :
-	return render_template('login.html')
+@app.route('/wall')
+def wall() :
+	return render_template('wall.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

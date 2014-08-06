@@ -1,3 +1,29 @@
 {% extends "layout.html" %}
 {% block body %}
+
+<div class='subject'>
+	<h1 class="col-sm-offset-1">: Write</h1>
+</div>
+
+{% if session.logged_in %}
+
+<form action="{{ url_for('write') }}" method='post'>
+<div class="col-sm-offset-1 col-sm-10">
+	<textarea class="form-control" rows="5"></textarea>
+	<div class="checkbox text-right">
+		<label>
+			<input type="checkbox" id="secret">
+			Secret
+		</label>
+	</div>
+	<button type='submit' class='btn btn-success'>Write</button>
+</div>
+</form>
+
+{% else %}
+
+<p class="col-sm-offset-1 col-sm-10">You can write on the wall when logging in</p>
+
+{% endif %}
+
 {% endblock %}

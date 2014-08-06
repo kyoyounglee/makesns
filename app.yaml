@@ -11,8 +11,13 @@ handlers:
 #   upload: application/static/res/img/favicon.ico
 
 # [application/static/*] => [project-id.appspot.com/static/*]
-- url: /static
-  static_dir: application/static
+- url: /static/css
+  static_dir: application/static/css
+  mime_type: "text/css"
+
+- url: /static/js
+  static_dir: application/static/js
+  mime_type: "text/javascript"
 
 # application[directory name] : module name
 - url: .*
