@@ -6,7 +6,6 @@ from application import db
 from application.models import user_manager
 
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login() :
 	if request.method == 'POST':
@@ -17,11 +16,15 @@ def login() :
 
 		if login :
 			session['logged_in'] = True
-			# session['name'] = uuser_manager.get_user_by_email(email).username
+
+			session['user_id'] = user_manager.get_user_by_email(email)[0].id
+
+			session['user_name'] = user_manager.get_user_by_email(email)[0].username
+
 			return redirect(url_for('wall'))
 
 		else :
-			session['logged_in'] = False
+			session.pop('logged_in', None)
 			return render_template('login.html')
 
 	else:

@@ -16,16 +16,11 @@ def wall(wall_id) :
 			wall_id = session['user_id']
 
 		session['wall_id'] = wall_id
-		session['wall_name'] = get_user(wall_id).username
+		session['wall_name'] = get_user(wall_id)[0].username
 
 		return render_template('wall.html')
 
-	else :
-
-		if session['logged_in'] == True:
-			return render_template('wall.html')
-
-		return redirect(url_for('login'))
+	return render_template('wall.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -10,7 +10,7 @@ from application.models.user_manager import *
 def signup() :
 	if request.method == 'POST':
 		add_user(request.form)
-		return redirect(url_for('wall'))
+		return redirect(url_for('login'))
 	else:
 		return render_template('signup.html')
 
