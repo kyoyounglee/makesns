@@ -5,13 +5,17 @@
 	<h1 class="col-sm-offset-1">: Welcome, {{ session.name }}'s Wall</h1>
 </div>
 
-<p id="fonts" class="text-right col-sm-offset-1 col-sm-10 col-sm-offset-1">
+<div id="fonts" class="text-right col-sm-offset-1 col-sm-10 col-sm-offset-1">
 	<a href="{{ url_for('write') }}">Write </a>
-</p>
+</div>
 
 <div class="contents col-sm-offset-1 col-sm-10">
-	<div class="read">
-		<p>Written by {{ session.written }}</p>
+	<div class="post">
+
+		<div class="user">
+			<p><span class="glyphicon glyphicon-user"></span> {{ session.written }}</p>
+		</div>
+	
 		<p>Before 5 hours</p>
 
 		<hr>
@@ -26,7 +30,7 @@
 
 		<hr>
 
-		<p class="text-right"><span id="img" class="glyphicon glyphicon-pencil"></span><span class="badge">2</span></p>
+		<p class="text-right"><span class="badge">2</span></p>
 	</div>
 </div>
 {% endblock %}

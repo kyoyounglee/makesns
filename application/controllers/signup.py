@@ -1,11 +1,18 @@
 #-*- coding:utf-8 -*-
 from application import app
-from flask import render_template
+from flask import render_template, request, url_for, redirect
+from application.models.schema import *
+from application import db
+from application.models.user_manager import *
 
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup() :
-	return render_template('signup.html')
+	if request.method == 'POST':
+		add_user(request.form)
+		return redirect(url_for('wall'))
+	else:
+		return render_template('signup.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

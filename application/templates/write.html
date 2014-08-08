@@ -5,20 +5,21 @@
 	<h1 class="col-sm-offset-1">: Write</h1>
 </div>
 
-{% if not session.logged_in %}
+{% if session.logged_in %}
 
-<form action="{{ url_for('write') }}" method='post'>
+
 <div class="col-sm-offset-1 col-sm-10">
-	<textarea class="form-control" rows="5"></textarea>
-	<div class="checkbox text-right">
-		<label>
-			<input type="checkbox" id="secret">
-			Secret
-		</label>
-	</div>
-	<button type='submit' class='btn btn-success'>Write</button>
+	<form action="{{ url_for('write') }}" method='post'>
+		<textarea class="form-control" rows="5"></textarea>
+		<div class="checkbox text-right">
+			<label>
+				<input type="checkbox" id="secret">
+				Secret
+			</label>
+		</div>
+		<button type='submit' class='btn btn-success'>Write</button>
+	</form>
 </div>
-</form>
 
 {% else %}
 
