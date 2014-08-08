@@ -10,10 +10,20 @@ from application.models import user_manager
 @app.route('/login', methods=['GET', 'POST'])
 def login() :
 	if request.method == 'POST':
-		user_manager.login_check(request.form['email0'], request.form['password0'])
-		session['logged_in'] = True
-		session['name'] = request.form['email0']
-		return redirect(url_for('wall'))
+
+		email = request.form['email0']
+		password = request.form['password0']
+		login = user_manager.login_check(email, password)
+
+		if login :
+			session['logged_in'] = True
+			# session['name'] = uuser_manager.get_user_by_email(email).username
+			return redirect(url_for('wall'))
+
+		else :
+			session['logged_in'] = False
+			return render_template('login.html')
+
 	else:
 		return render_template('login.html')
 
