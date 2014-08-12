@@ -3,30 +3,50 @@
 
 <div class="contents col-sm-offset-1 col-sm-10">
 	<div class="post">
-		<p>Written by {{ session.written }}</p>
-		<p>Before 5 hours</p>
+
+		<div class="user">
+			<p><span class="glyphicon glyphicon-user"></span> {{ post.user.username }}</p>
+		</div>
+
+		<div class="time text-right">
+			{{ post.created_time }}
+		</div>
+		
+		<hr>
+<!-- 		<div class="text-right">
+			<button type="button" class="btn btn-default btn-xs" href="{{ url_for('delete_post', post_id=post_id) }}" id="delete" method="POST">Delete</button>
+		</div> -->
+		{{ post.body }}
 
 		<hr>
 
-		<p>Hi.</p>
-		<p>I don't have anything to say to u.</p>
-		<p>Ahhhhhhhhhhhhhhhhhhhhhh</p>
-		<p>Bye bye</p>
-		<p>Seeeeeeeeee U</p>
-		<p>ps. I want to relax T_T</p>
-		<p>More?more?more?more?...hehehehe</p>
+		<div class="comment">
 
-		<hr>
 
-		<p class="text-right"><span class="badge">2</p>
+			{% for i in comments %}
+			<div class="form-group">
+				{{ i.user.username }}
+				{{ i.body }}
+				<a href="{{ url_for('delete_comment', comment_id=i.id)}}" id="delete"><span class="glyphicon glyphicon-remove"></span></a>
+			</div>
+			{% endfor %}
 
-		<dl>
-			<dt>Kyoyoung</dt>
-			<dd>WoW</dd>
-			<dt>Jeahyun</dt>
-			<dd>I'm finished! *.*</dd>
-		</dl>
+			<form action="{{ url_for('read', wall_id = session['wall_id'], id=session['post_id']) }}" method='post' role="form" class="form-horizontal">
+
+				<div class="form-group">
+
+					<input type="text" name="comment" class="form-control" />
+					<button type="submit" class="btn btn-success">Submit</button>
+
+				</div>
+			</form>
+
+		</div>
+
 	</div>
+
+
+
 </div>
 
 {% endblock %}

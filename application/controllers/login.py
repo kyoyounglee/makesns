@@ -16,10 +16,8 @@ def login() :
 
 		if login :
 			session['logged_in'] = True
-
-			session['user_id'] = user_manager.get_user_by_email(email)[0].id
-
-			session['user_name'] = user_manager.get_user_by_email(email)[0].username
+			session['user_id'] = user_manager.get_user_by_email(email).id
+			session['user_name'] = user_manager.get_user_by_email(email).username
 
 			return redirect(url_for('wall'))
 

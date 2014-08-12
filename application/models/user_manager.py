@@ -1,6 +1,7 @@
 from application import db
 from schema import *
 from flask import session
+from datetime import datetime
 
 def add_user(data):
 	user = User(
@@ -22,5 +23,51 @@ def get_user(user_id):
 	return user
 
 def get_user_by_email(email):
-	user = User.query.filter(User.email == email).all()
+	user = User.query.filter(User.email == email).first()
 	return user
+
+def get_post(post_id):
+	post = Post.query.filter(Post.id == post_id).first()
+	return post
+
+def get_comment(comment_id):
+	comment = Comment.query.filter(Comment.id == comment_id).first()
+	return comment
+
+def write_timeline(form):
+	post = Post(
+		body = form['body'],
+		created_time = datetime.now(),
+		edited_time = datetime.now(),
+		is_edited = False,
+		is_secret = False,
+		user_id = session['user_id'],
+		wall_id = session['wall_id']
+		)
+	db.session.add(post)
+	db.session.commit()
+
+def post_delete(post_id):
+	post = Post.query.get(post_id)
+	db.session.delete(post)
+	db.session.commit()
+
+def comment_delete(comment_id):
+	comment = Comment.query.get(comment_id)
+	db.session.delete(comment)
+	db.session.commit()
+
+def write_comment(form, posts):
+	comment = Comment(
+		body = form['comment'],
+		created_time = datetime.now(),
+		post_id = posts,
+		user_id = session['user_id']
+		)
+	db.session.add(comment)
+	db.session.commit()
+
+def post_modify(post_id, update_body):
+	post = Post.query.get(post_id)
+	post.body = update_body
+	db.session.commit()

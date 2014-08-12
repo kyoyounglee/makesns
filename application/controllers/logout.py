@@ -7,7 +7,8 @@ from application.models.schema import *
 @app.route('/logout')
 def logout() :
 	session.pop('logged_in', None)
-	session.pop('name', None)
+	session.pop('user_name', None)
+	session.pop('user_id', None)
 	return redirect(url_for('index'))
 
 @app.errorhandler(404)

@@ -2,7 +2,7 @@
 {% block body %}
 
 <div class='subject'>
-	<h1 class="col-sm-offset-1">: Welcome, {{ session.wall_name }}'s Wall</h1>
+	<h1 class="col-sm-offset-1">: Welcome, {{ wall_owner.username }}'s Wall</h1>
 </div>
 
 <div id="fonts" class="text-right col-sm-offset-1 col-sm-10 col-sm-offset-1">
@@ -10,27 +10,38 @@
 </div>
 
 <div class="contents col-sm-offset-1 col-sm-10">
+
+	{% for i in posts %}
+
 	<div class="post">
 
 		<div class="user">
-			<p><span class="glyphicon glyphicon-user"></span> {{ session.written }}</p>
+			<p><span class="glyphicon glyphicon-user"></span> {{ i.user.username }}</p>
 		</div>
-	
-		<p>Before 5 hours</p>
 
+		<div class="time text-right">
+			{{ i.created_time }}
+		</div>
+		
 		<hr>
+		
+		<div class="text-right">
+			<a href="{{ url_for('delete_post', post_id=i.id) }}">delete</a>
+			<a href="{{ url_for('modify_post', post_id=i.id)}}">Modify</a>
+		</div>
 
-		<p>Hi.</p>
-		<p>I don't have anything to say to u.</p>
-		<p>Ahhhhhhhhhhhhhhhhhhhhhh</p>
-		<p>Bye bye</p>
-		<p>Seeeeeeeeee U</p>
-		<p>ps. I want to relax T_T</p>
-		<p><a href="{{ url_for('read')}}">...More</a></p>
-
+		{% if message %}
+		<div id="message">
+			{{ message }}
+		</div>
+		{% endif %}
+		
+			<a href="{{ url_for('read', wall_id = session['wall_id'], id = i.id) }}">{{ i.body }}</a>
 		<hr>
-
-		<p class="text-right"><span class="badge">2</span></p>
+		
 	</div>
+
+	{% endfor %}
+	
 </div>
 {% endblock %}
