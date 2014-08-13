@@ -20,6 +20,13 @@ def delete_comment(comment_id):
 		comment_delete(comment_id)
 	return redirect(url_for('read', wall_id=session['wall_id'], id=session['post_id']))
 
+@app.route('/delete_comment_in_wall/<int:comment_id>')
+def delete_comment_in_wall(comment_id):
+	comment = get_comment(comment_id)
+	if session['user_id'] == comment.user_id :
+		comment_delete(comment_id)
+	return redirect(url_for('wall', wall_id=session['wall_id']))
+
 @app.route('/modify_post/<int:post_id>', methods=['GET', 'POST'])
 def modify_post(post_id):
 	post = get_post(post_id)

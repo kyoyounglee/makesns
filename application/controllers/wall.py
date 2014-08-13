@@ -5,7 +5,7 @@ from application.models.user_manager import *
 import sys
 
 
-@app.route('/wall', defaults={'wall_id':0}, methods=['GET', 'POST'])
+@app.route('/my_wall', defaults={'wall_id':0}, methods=['GET', 'POST'])
 @app.route('/timeline/<int:wall_id>', methods=['GET', 'POST'])
 def wall(wall_id) :
 	if not 'user_id' in session :

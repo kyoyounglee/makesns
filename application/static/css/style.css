@@ -40,16 +40,17 @@ body > div .page {
 	margin-bottom: 10px;
 }
 
-	font-size: 30px;
-}
-
-.time {
-	font-size: 9px;
+.time .post_btn {
+	font-size: 8px;
 	font-family: Verdana;
 }
 
 span#icon, span#delete {
 	font-size: 20px;
+}
+
+.comment {
+	line-height: 190%;
 }
 
 

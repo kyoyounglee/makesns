@@ -13,9 +13,7 @@
 		</div>
 		
 		<hr>
-<!-- 		<div class="text-right">
-			<button type="button" class="btn btn-default btn-xs" href="{{ url_for('delete_post', post_id=post_id) }}" id="delete" method="POST">Delete</button>
-		</div> -->
+
 		{{ post.body }}
 
 		<hr>
@@ -27,7 +25,7 @@
 			<div class="form-group">
 				{{ i.user.username }}
 				{{ i.body }}
-				<a href="{{ url_for('delete_comment', comment_id=i.id)}}" id="delete"><span class="glyphicon glyphicon-remove"></span></a>
+				<a href="{{ url_for('delete_comment', comment_id=i.id)}}" class="delete"><span class="glyphicon glyphicon-remove"></span></a>
 			</div>
 			{% endfor %}
 
