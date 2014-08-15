@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
 
+<script type='text/javascript' src='{{ url_for('static', filename='js/script.js') }}'></script>
+
 <div class='subject'>
 	<h1 class="col-sm-offset-1">: Welcome, {{ wall_owner.username }}'s Wall</h1>
 </div>
@@ -10,68 +12,7 @@
 </div>
 
 <div class="col-sm-offset-1 col-sm-10">
-
-	{% for i in posts %}
-
-	<div class="post">
-
-		<div class="user">
-			<p><span class="glyphicon glyphicon-user"></span> {{ i.user.username }}</p>
-		</div>
-
-		<div class="time text-right">
-			{{ i.created_time }}
-		</div>
-		
-		<hr>
-		
-		<a href="{{ url_for('read', wall_id = session['wall_id'], id = i.id) }}">{{ i.body }}</a>
-
-		<div class="text-right">
-			<p class="post_btn"><a class="btn btn-default" href="{{ url_for('modify_post', post_id=i.id)}}">Modify</a>
-				<a class="btn btn-default" href="{{ url_for('delete_post', post_id=i.id) }}">delete</a>
-			</p>
-		</div>
-
-		<hr>
-
-		<div class="panel-group" id={{i.id}}>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#{{i.id}}" href="#collapse{{i.id}}">
-							Open to see all the comments
-						</a>
-					</h4>
-				</div>
-				<div id="collapse{{i.id}}" class="panel-collapse collapse">
-					<div class="panel-body">
-
-						<!-- Comments -->
-						{% for comment in i.comments %}
-						<div class="comment">
-							<div class="col-sm-2">
-								{{ comment.user.username }}
-							</div>
-							<div class="col-sm-9">
-								{{ comment.body }}
-							</div>
-							<div class="col-sm-1">
-								<a href="{{ url_for('delete_comment_in_wall', comment_id=comment.id )}}" class="delete"><span class="glyphicon glyphicon-remove"></span></a>
-							</div>
-						</div>
-						{% endfor %}
-
-					
-
-					</div>
-				</div>
-			</div>
-		</div>
-
+	<div id="post_ajax">
 	</div>
-
-	{% endfor %}
-
 </div>
 {% endblock %}
