@@ -34,6 +34,10 @@ def get_post_5(wall_id):
 	post = Post.query.filter(Post.wall_id == wall_id).order_by(db.desc(Post.edited_time)).limit(5)
 	return post
 
+def keep_getting_post_5(wall_id, num):
+	post = Post.query.filter(Post.wall_id == wall_id).order_by(db.desc(Post.edited_time)).slice(num, num+5).all()
+	return post
+
 def get_comment(comment_id):
 	comment = Comment.query.filter(Comment.id == comment_id).first()
 	return comment
