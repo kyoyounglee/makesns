@@ -79,3 +79,8 @@ def post_modify(post_id, update_body):
 	post = Post.query.get(post_id)
 	post.body = update_body
 	db.session.commit()
+
+def add_profile_image(user_id, filename):
+	user = get_user(user_id)
+	user.profile_image = filename
+	db.session.commit()

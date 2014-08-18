@@ -8,6 +8,7 @@ class User(db.Model):
 	password	= db.Column(db.String(100))
 	phone		= db.Column(db.String(15))
 	birthday	= db.Column(db.Date)
+	profile_image = db.Column(db.String(100))
 
 
 class Post(db.Model):
