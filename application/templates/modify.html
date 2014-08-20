@@ -1,23 +1,21 @@
-{% extends "layout.html" %}
+{% extends "write.html" %}
 {% block body %}
 
+{% block subject %}
+	: Modify
+{% endblock %}
 
-<div class='subject'>
-	<h1 class="col-sm-offset-1">: Modify</h1>
-</div>
+{% block form_action %}
+	{{ url_for('modify_post', post_id=post.id) }}
+{% endblock %}
 
-<div class="col-sm-offset-1 col-sm-10">
-	<form action="{{ url_for('modify_post', post_id=post.id) }}" method='post'>
-		<textarea class="form-control" name="body" rows="5">{{ post.body }}</textarea>
-		<div class="checkbox text-right">
-			<label>
-				<input type="checkbox" name="secret" />
-				Secret
-			</label>
-		</div>
-		<button type='submit' class='btn btn-success'>Modify</button>
-	</form>
-</div>
+{% blcok write_body %}
+	{{ post.body }}
+{% endblock %}
+
+{%block button %}
+	Modify
+{% endblock %}
 
 
 {% endblock %}

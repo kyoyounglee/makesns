@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	{% block head %}
 	<meta charset="UTF-8">
 	<title>SNS</title>
-	<script type='text/javascript' src='{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}'></script>
-	<script type='text/javascript' src='{{ url_for('static', filename='js/bootstrap.min.js') }}'></script>
-	<link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='css/style.css') }}' />
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	
 	<link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='css/bootstrap.min.css') }}' />
-	<!-- fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type='text/css' href='{{ url_for('static', filename='css/style.css') }}' />
+	<!-- fonts -->
+	
+	{% endblock %}
 </head>
 
 <body>
@@ -22,7 +26,7 @@
 
 				<div class='menu'>
 
-					{% if not session.logged_in %}
+					{% if 'user_id' not in session %}
 
 					<p class="text-right">
 						<a href="{{ url_for('login') }}">Log in </a>

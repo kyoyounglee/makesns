@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ super() }}
+
+<script type='text/javascript' src='{{ url_for('static', filename='js/follow_script.js') }}'></script>
+{% endblock %}
+
+{% block body %}
+
+<div class='subject'>
+	<h1 class="col-sm-offset-1">: Search</h1>
+</div>
+
+<form action="{{ url_for('follow')}}" method="post" role="form" class="form-horizontal">
+	<div class="col-sm-offset-1 col-sm-11">
+		<input type="text" name="search_name" />
+	</div>
+</form>
+<br>
+
+<div id="find_user" class="col-sm-offset-1"></div>
+
+<br><br>
+
+<div class='subject'>
+	<h1 class="col-sm-offset-1">: Followers</h1>
+</div>
+<div id="followers" class="col-sm-offset-1">
+	{% for i in followers %}
+	<p>{{i.followee.username}}</p>
+	{% endfor %}
+</div>
+
+<br><br>
+
+<div class='subject'>
+	<h1 class="col-sm-offset-1">: Followees</h1>
+</div>
+<div id="followees" class="col-sm-offset-1">
+	{% for i in followees %}
+		{{ i.follower.username }}
+	{% endfor %}
+</div>
+
+{% endblock %}

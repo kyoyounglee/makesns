@@ -2,29 +2,21 @@
 {% block body %}
 
 <div class='subject'>
-	<h1 class="col-sm-offset-1">: Write</h1>
+	<h1 class="col-sm-offset-1">{% block subject %}: Write{% endblock %}</h1>
 </div>
 
-{% if session.logged_in %}
-
-
 <div class="col-sm-offset-1 col-sm-10">
-	<form action="{{ url_for('write', post_id=post_id) }}" method='post'>
-		<textarea class="form-control" name="body" rows="5"></textarea>
+	<form action="{% block form_action %}{{ url_for('write', post_id=post_id) }}{% endblock %}" method='post'>
+		<textarea class="form-control" name="body" rows="5">{% block write_body %}{% endblock %}</textarea>
 		<div class="checkbox text-right">
 			<label>
 				<input type="checkbox" name="secret" />
 				Secret
 			</label>
 		</div>
-		<button type='submit' class='btn btn-success'>Write</button>
+		<button type='submit' class='btn btn-success'>{% block button %}Write{% endblock %}</button>
 	</form>
 </div>
 
-{% else %}
-
-<p class="col-sm-offset-1 col-sm-10">You can write on the wall when logging in</p>
-
-{% endif %}
 
 {% endblock %}

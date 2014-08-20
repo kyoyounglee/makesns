@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<script type='text/javascript' src='{{ url_for('static', filename='js/script.js') }}'></script>
+{% endblock %}
+
 {% block body %}
 
-<script type='text/javascript' src='{{ url_for('static', filename='js/script.js') }}'></script>
+
 
 <div class='subject'>
 	<h1 class="col-sm-offset-1">: Welcome, {{ wall_owner.username }}'s Wall</h1>

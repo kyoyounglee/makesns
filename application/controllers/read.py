@@ -2,6 +2,7 @@
 from application import app
 from flask import render_template, url_for, request, session
 from application.models.user_manager import *
+from application.models.post_manager import *
 
 
 @app.route('/read/<int:wall_id>/<int:id>', methods=['GET', 'POST'])

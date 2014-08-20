@@ -2,7 +2,7 @@
 from application import app
 from flask import render_template, request, session, redirect, url_for
 from application.models.schema import *
-from application import db
+
 from application.models import user_manager
 
 
@@ -10,19 +10,18 @@ from application.models import user_manager
 def login() :
 	if request.method == 'POST':
 
-		email = request.form['email0']
-		password = request.form['password0']
-		login = user_manager.login_check(email, password)
+		email = request.form['email']
+		password = request.form['password']
+		login_success = user_manager.login_check(email, password)
 
-		if login :
-			session['logged_in'] = True
-			session['user_id'] = user_manager.get_user_by_email(email).id
-			session['user_name'] = user_manager.get_user_by_email(email).username
+		if login_success :
+			user = user_manager.get_user_by_email(email)
+			session['user_id'] = user.id
+			session['user_name'] = user.username
 
 			return redirect(url_for('wall'))
 
 		else :
-			session.pop('logged_in', None)
 			return render_template('login.html')
 
 	else:
