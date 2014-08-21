@@ -48,3 +48,6 @@ def get_follower(follower_id):
 
 def get_followee(followee_id):
 	return User.query.get(followee_id).followers.all()
+
+
+	

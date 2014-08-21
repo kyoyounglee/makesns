@@ -9,7 +9,7 @@ def index() :
 	if 'user_id' not in session:
 		return redirect(url_for('login'))
 	else:
-		return redirect(url_for('wall'))
+		return redirect(url_for('newsfeed'))
 	#return render_template('layout.html')
 
 @app.errorhandler(404)

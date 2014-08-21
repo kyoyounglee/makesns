@@ -6,6 +6,7 @@ var running = false;
 $(document).ready(function(){
 
 	get_posts(num);
+	console.log('wall');
 	// $.ajax({
 	// 	url: '/ajax', // /get_posts
 	// 	type: 'POST',

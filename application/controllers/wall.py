@@ -46,7 +46,35 @@ def ajax_again():
 
 	return render_template('keep_wall_ajax.html', wall_owner=wall_owner, posts=posts)
 
+
+@app.route('/newsfeed', methods=['GET'])
+def newsfeed():
+	if 'user_id' not in session:
+		return url_for('index')
+	return render_template('newsfeed.html')
+
+@app.route('/get_newsfeed', methods=['POST'])
+def get_newsfeed():
+	user = session['user_id']
+	followers = get_follower(user)
+	followers_list = []
+
+	for i in followers :
+		followers_list.append(i.followee.id)
+	followers_list.append(int(user))
+
+	number = int(request.form['num'])
+	newsfeed_posts = get_newsfeed_posts(followers_list, number)
+
+	if newsfeed_posts == []:
+		return ''
+
+	return render_template('newsfeed_list.html', posts = newsfeed_posts)
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     """Return a custom 404 error."""
     return 'Sorry, nothing at this URL.', 404
+
+

@@ -1,5 +1,5 @@
 from application import db
-from schema import Post
+from schema import Post, User
 from flask import session
 
 
@@ -46,3 +46,9 @@ def post_modify(post_id, update_body):
 	post = Post.query.get(post_id)
 	post.body = update_body
 	db.session.commit()
+
+
+def get_newsfeed_posts(lists, num):
+	post = Post.query.filter(Post.user_id.in_(lists) | Post.wall_id.in_(lists)).order_by(db.desc(Post.edited_time)).slice(num, num+5).all()
+	return post
+
